@@ -1,0 +1,43 @@
+<head>
+    <title>Redirecting...</title>
+<link href="https://dlldealer.cc/ia/favicon2.png" rel="icon" type="image/x-icon" />
+<link rel="stylesheet" href="st/main.css">
+    <script>
+        function decodeAndForward() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const hexLink = urlParams.get('link');
+            
+            if (!hexLink) {
+                alert('Where are you going?');
+                return;
+            }
+
+            const cleanedHex = hexLink.replace(/-/g, '');
+            
+            let decodedUrl = '';
+            for (let i = 0; i < cleanedHex.length; i += 2) {
+                const hexPair = cleanedHex.substring(i, i + 2);
+                decodedUrl += String.fromCharCode(parseInt(hexPair, 16));
+            }
+            
+            console.log('AdUrl:', decodedUrl);
+
+            setTimeout(() => {
+                window.location.href = decodedUrl;
+            }, 3000);
+        }
+
+        window.onload = decodeAndForward;
+    </script>
+</head>
+<body style="margin:0; display:flex; height:100vh; align-items:center;">
+
+<div style="margin: 0 auto; overflow: auto; width:100%;">
+    <img style="position: relative; margin-left:50%; margin-right:50%; display: block; margin-left: auto; margin-right: auto;" src="https://dlldealer.cc/ia/load_steve.gif" draggable="false"/>
+    <h1 style="text-align: center;">Preparing your link :)</h1>
+    <p style="text-align: center;">You will be redirected shortly. If nothing happens, <a href="https://dlldealer.cc/">click here to go home</a>.</p>
+</div>
+
+<img style="position: absolute; bottom:4px; left:4px;" src="https://dlldealer.cc/ia/logo1.0.png" draggable="false"/>
+</body>
+</html>
