@@ -83,10 +83,16 @@ filter: drop-shadow(0px 0px 5px rgba(207,231,247,1));
 
 
 .listCracks {
-background: linear-gradient(to bottom, #992725 0%,#a63030 50%,#852123 51%,#842426 71%,#83292e 100%);
+  background: linear-gradient(to bottom, #f51322 0%,#c3030c 50%,#940007 51%,#e70713 100%);
+  color:rgb(102, 30, 30);
 }
 .listBrother {
-background: linear-gradient(to bottom, #b2065f 0%,#c0106e 50%,#9a0657 51%,#9a0a59 71%,#97115f 100%);
+  background: linear-gradient(to bottom, #bdeefd 0%,#55d3fd 50%,#03c0ff 51%,#96e3fc 100%);
+  color:rgb(44, 121, 197);
+}
+.listGames {
+  background: linear-gradient(to bottom, #cdfb91 0%,#9ffc2e 50%,#7be000 51%,#bafa6c 100%);
+  color:rgb(46, 172, 67);
 }
 
 .dllist:hover {
@@ -102,6 +108,7 @@ background: linear-gradient(to bottom, #b2065f 0%,#c0106e 50%,#9a0657 51%,#9a0a5
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 20px;
+  border-radius: 4px;
 }
 .testimonialName {
   margin-top:2px;
@@ -123,15 +130,69 @@ background: linear-gradient(to bottom, #b2065f 0%,#c0106e 50%,#9a0657 51%,#9a0a5
   width: 64px;
   height: 64px;
   display:inline-block;
+  border-radius:4px;
 }
 .testimonialRTxt {
   width:464;
   height: 71px;
   margin-left: 4px;
   background-color: #f2f6f8;
-  border-radius:8px;
+  border-radius: 4px;
   display:inline-block;
   color: #929292;
   font-style: italic;
   padding: 4px;
+}
+
+
+.topAd {
+  border: 1px solid gray;
+  width: 728px;
+  height: 90px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top:20px;
+  font-family:Verdana, sans-serif;
+}
+.adLink {
+  background-color:rgba(170, 170, 170, 0.3);
+  display: inline;
+  border-bottom-left-radius: 4px;
+  float: right;
+  margin-top: 0;
+  user-select: none;
+  text-decoration: none;
+  width: 16px;
+  height: 16px;
+}
+.skyscaperAd {
+  border: 1px solid gray;
+  width: 120px;
+  height: 600px;
+  position:absolute;
+  top:0px;
+}
+.squareAd {
+  border: 1px solid gray;
+  width: 125px;
+  height: 125px;
+  margin-top:10px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.adTxt {
+  font-size: 10px;
+  margin-top: 1px;
+  margin-left: 1px;
+  color: white;
+  text-align: center;
+}
+
+.bottomMarquee {
+position:fixed;
+bottom: 0;
+color: gold;
+background-color:#000000;
+font-weight: bold;
+font-style: italic;
 }
