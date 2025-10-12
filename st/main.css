@@ -66,6 +66,12 @@ filter: drop-shadow(0px 0px 5px rgba(207,231,247,1));
   font-weight: bold;
 }
 
+.testimonialHeader {
+  font-family: Georgia, serif;
+  color:#18a323;
+  font-style: italic;
+}
+
 .dllist {
   padding: 0;
   text-align: center;
@@ -82,17 +88,29 @@ filter: drop-shadow(0px 0px 5px rgba(207,231,247,1));
 }
 
 
-.listCracks {
+.listRed {
   background: linear-gradient(to bottom, #f51322 0%,#c3030c 50%,#940007 51%,#e70713 100%);
   color:rgb(102, 30, 30);
 }
-.listBrother {
+.listOrange {
+  background: linear-gradient(to bottom, #f89c4c 0%,#fc8414 50%,#ea7100 51%,#fa9536 100%);
+  color:rgb(172, 83, 0);
+}
+.listYellow {
+  background: linear-gradient(to bottom, #fbd041 0%,#fdc90b 50%,#e0af00 51%,#fccf2c 100%);
+  color:rgb(172, 126, 0);
+}
+.listBlue {
   background: linear-gradient(to bottom, #bdeefd 0%,#55d3fd 50%,#03c0ff 51%,#96e3fc 100%);
   color:rgb(44, 121, 197);
 }
-.listGames {
+.listGreen {
   background: linear-gradient(to bottom, #cdfb91 0%,#9ffc2e 50%,#7be000 51%,#bafa6c 100%);
   color:rgb(46, 172, 67);
+}
+.listNull {
+  background: linear-gradient(to bottom, #c5c5c5 0%,#b6b6b6 50%,#aaaaaa 51%,#bfbfbf 100%);
+  color:rgb(114, 114, 114);
 }
 
 .dllist:hover {
@@ -162,7 +180,7 @@ filter: drop-shadow(0px 0px 5px rgba(207,231,247,1));
   margin-top: 0;
   user-select: none;
   text-decoration: none;
-  width: 34px;
+  width: 24px;
   height: 16px;
 }
 .skyscaperPm {
@@ -195,4 +213,14 @@ color: gold;
 background-color:#000000;
 font-weight: bold;
 font-style: italic;
+}
+
+.ytmnd > div {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1000px;
+  z-index: 10;
+  text-align: center;
+  font-family: Tahoma, sans-serif;
 }
