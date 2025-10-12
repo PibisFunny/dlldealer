@@ -1,0 +1,4 @@
+NAME: Big File Test
+AUTH: Jotaro Kujo
+DESC: This is a test file to see what happens when downloading a large file with the freeStyle prerelease.
+LINK: https://dlldealer.cc/freestyle/bigFileTest/jojo.mp4
