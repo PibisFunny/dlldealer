@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name='robots' content='noindex,nofollow'/>
+<title>Merry Christmas!!!</title>
+<style type="text/css">
+body {
+  background-image: url('merry/snow3.gif');
+  background-color: #004488;
+  font-family: "Comic Sans MS", "Times New Roman", serif;
+  margin: 0;
+  padding: 0;
+}
+</style>
+</head>
+<body>
+
+<center>    
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
+<tr>
+<td align="center">
+<marquee direction="right">
+<img src="merry/sleigh2a.gif" width="250" height="80" alt="Santa's Sleigh">
+</marquee>
+</td>
+</tr>
+</table>
+
+<br>
+
+<table width="90%" border="3" bordercolor="#FF0000" cellpadding="10" cellspacing="0" bgcolor="#FFFFFF">
+<tr>
+<td align="center">
+<font size="7" color="#FF0000" face="Comic Sans MS, Arial"><b><i>WELCOME TO MY WINTER WONDERLAND!</i></b></font>
+<br><br>
+<img src="merry/sig.gif" width="200" height="126" alt="Santa's Signature">
+<br><br>
+<font size="4" color="#006600"><b>Merry Christmas & Happy Holidays from my family to yours!</b></font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<table width="40%" border="3" bordercolor="#666666" cellpadding="0" cellspacing="0" bgcolor="#999999">
+<tr>
+<td>
+<table width="100%" border="0" cellpadding="5" cellspacing="0">
+<tr>
+<td width="20%" align="center" bgcolor="#666666" onclick="prevTrack()" style="cursor: pointer;">
+<font size="5" color="#FFFFFF"><b>⏮</b></font>
+</td>
+<td width="20%" align="center" bgcolor="#666666" onclick="playPause()" style="cursor: pointer;">
+<font size="5" color="#FFFFFF"><b><span id="playPauseBtn">▶</span></b></font>
+</td>
+<td width="20%" align="center" bgcolor="#666666" onclick="nextTrack()" style="cursor: pointer;">
+<font size="5" color="#FFFFFF"><b>⏭</b></font>
+</td>
+<td width="20%" align="center" bgcolor="#666666" onclick="toggleRepeat()" style="cursor: pointer;">
+<font size="5" color="#FFFFFF"><b><span id="repeatBtn">↻</span></b></font>
+</td>
+</tr>
+<tr>
+<td colspan="4" align="center" bgcolor="#CCCCCC">
+<font size="3" color="#000000"><b><span id="trackName">Press play!</span></b></font>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+
+<audio id="musicPlayer"></audio>
+
+<script type="text/javascript">
+var tracks = [
+  { file: "merry/mp3/sleigh.mp3", name: "Sleigh Ride" },
+  { file: "merry/mp3/12days.mp3", name: "12 Days of Christmas" },
+  { file: "merry/mp3/deckthe.mp3", name: "Deck the Halls" },
+  { file: "merry/mp3/frosty.mp3", name: "Frosty the Snowman" },
+  { file: "merry/mp3/anglhigh.mp3", name: "Angels We Have Heard on High" },
+  { file: "merry/mp3/here_com.mp3", name: "Here Comes Santa Claus!" },
+  { file: "merry/mp3/HTHAS9698.mp3", name: "Hark! The Herald Angels Sing" },
+  { file: "merry/mp3/hlyjolly.mp3", name: "A Holly Jolly Christmas" },
+  { file: "merry/mp3/looklot.mp3", name: "It's Beginning to Look a Lot Like Christmas" },
+  { file: "merry/mp3/jngbell1.mp3", name: "Jingle Bells" },
+  { file: "merry/mp3/jollyold.mp3", name: "Jolly Old Saint Nicholas" },
+  { file: "merry/mp3/nowell.mp3", name: "The First Noel" },
+  { file: "merry/mp3/rudolph.mp3", name: "Rudolph the Red-Nosed Reindeer" },
+  { file: "merry/mp3/silenght.mp3", name: "Silent Night" }
+  
+];
+
+var currentTrack = 0;
+var isPlaying = false;
+var repeatMode = false;
+var player = document.getElementById('musicPlayer');
+
+player.addEventListener('ended', function() {
+  if (repeatMode) {
+    player.currentTime = 0;
+    player.play();
+  } else {
+    nextTrack();
+  }
+});
+
+function loadTrack(index) {
+  player.src = tracks[index].file;
+  document.getElementById('trackName').innerText = tracks[index].name;
+}
+
+function playPause() {
+  if (isPlaying) {
+    player.pause();
+    document.getElementById('playPauseBtn').innerText = '▶';
+    isPlaying = false;
+  } else {
+    if (!player.src) {
+      loadTrack(0);
+    }
+    player.play();
+    document.getElementById('playPauseBtn').innerText = '⏸';
+    isPlaying = true;
+  }
+}
+
+function nextTrack() {
+  currentTrack = (currentTrack + 1) % tracks.length;
+  loadTrack(currentTrack);
+  if (isPlaying) {
+    player.play();
+  }
+}
+
+function prevTrack() {
+  currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+  loadTrack(currentTrack);
+  if (isPlaying) {
+    player.play();
+  }
+}
+
+function toggleRepeat() {
+  repeatMode = !repeatMode;
+  document.getElementById('repeatBtn').style.color = repeatMode ? '#00FF00' : '#FFFFFF';
+}
+</script>
+
+<br>
+
+<table width="90%" border="0" cellpadding="15" cellspacing="0">
+<tr>
+<td width="33%" align="center" valign="top">
+<img src="merry/treett.gif" width="200" height="300" alt="Christmas Tree">
+<br><br>
+<img src="merry/wreathblink4.gif" width="40" height="56" alt="Wreath">
+<img src="merry/wreathblink4.gif" width="40" height="56" alt="Wreath">
+<img src="merry/wreathblink4.gif" width="40" height="56" alt="Wreath">
+<br><br>
+<img src="merry/deer71.gif" width="150" height="185" alt="Decorated Deer">
+<br><br>
+<img src="merry/cane17.gif" width="75" height="118" alt="Candy Cane">
+</td>
+
+<td width="34%" align="center" valign="top" bgcolor="#FFFFCC">
+<font size="5" color="#CC0000"><b>.:*:. CHRISTMAS <span style="color:black; background-color: black;">????</span> .:*:.</b></font>
+<br><br>
+<img src="merry/flake.gif" width="63" height="62" alt="Snowflake">
+<img src="merry/flake.gif" width="63" height="62" alt="Snowflake">
+<img src="merry/flake.gif" width="63" height="62" alt="Snowflake">
+<br><br>
+<font size="3" color="#000000">
+<b>What I'm Wishing For:</b><br>
+- Peace on Earth<br>
+- Snow on Christmas Day<br>
+- Happy Family<br>
+- Delicious Treats<br>
+- Maybe a Present... Hehe.
+</font>
+<br><br>
+<img src="merry/cookies.gif" width="108" height="154" alt="Christmas Cookies">
+<br><br>
+<img src="merry/snowha.gif" width="137" height="204" alt="Snowman">
+<br><br>
+<font size="2" color="#0000FF">
+<b>Don't forget to leave the milk and cookies for Santa!</b>
+</font>
+</td>
+
+<td width="33%" align="center" valign="top">
+<img src="merry/twinkle00.gif" width="170" height="246" alt="Twinkling Tree">
+<br><br>
+<img src="merry/reindeer4.gif" width="65" height="124" alt="3D Reindeer">
+<br><br>
+<img src="merry/deerlights09.gif" width="121" height="136" alt="Deer with Lights">
+<br><br>
+<img src="merry/candle4.gif" width="100" height="100" alt="Candle">
+</td>
+</tr>
+</table>
+
+<br>
+
+<table width="90%" border="2" bordercolor="#00AA00" cellpadding="10" cellspacing="0" bgcolor="#FFE4E1">
+<tr>
+<td align="center">
+<font size="4" color="#8B0000"><b>*** Cozy Christmas Corner ***</b></font>
+<br><br>
+<img src="merry/logsburn.gif" width="134" height="94" alt="Burning Logs">
+<br><br>
+<img src="merry/candles7.gif" width="199" height="121" alt="Candles">
+<br><br>
+<img src="merry/house1000.gif" width="188" height="109" alt="Christmas House">
+</td>
+</tr>
+</table>
+
+<br><br>
+
+<table width="90%" border="5" bordercolor="#FFD700" cellpadding="20" cellspacing="0" bgcolor="#FF6B6B">
+<tr>
+<td align="center">
+<font size="6" color="#FFFFFF" face="Arial Black"><b>MERRY CHRISTMAS & HAPPY NEW YEAR!!!</b></font>
+<br><br>
+<font size="3" color="#FFFFCC">
+<marquee behavior="scroll" direction="left" scrollamount="5">
+.:* HO HO HO! .:*:. May your days be merry and bright! *:.
+</marquee>
+</font>
+</td>
+</tr>
+</table>
+
+<br>
+
+<font size="2" color="#FFFFFF">
+<b>Page created: <span style="color:black; background-color: black;">????</span> | Last updated: Dec 15, <span style="color:black; background-color: black;">????</span></b><br>
+© <span style="color:black; background-color: black;">???? ???? ????????</span> - All Rights And Fudge Reserved
+<br><br>
+<img src="merry/flake.gif" width="63" height="62" alt="Snowflake">
+</font>
+
+<br><br>
+
+</center>
+
+</body>
+</html>

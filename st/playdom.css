@@ -1,0 +1,70 @@
+a {
+  color: skyblue;
+}
+
+a:visited {
+  color: skyblue;
+}
+
+a:active {
+  color: yellow;
+}
+
+
+.icomarquee {
+  width: 140px;
+  height: 100%;
+  overflow: hidden;
+  background-color: black;
+  position:absolute;
+  left:0;
+  top: 0;
+}
+
+.icomarqueeRight {
+  width: 140px;
+  height: 100%;
+  overflow: hidden;
+  background-color: black;
+  position:absolute;
+  right:0;
+  top: 0;
+}
+
+.icolist {
+  position: relative;
+  animation: VertMarqueeUp 30s linear infinite;
+  text-align: center;
+}
+
+.icolistRight {
+  position: relative;
+  animation: VertMarqueeDown 30s linear infinite;
+    text-align: center;
+}
+
+.bigLogo {
+  width: 852px;
+  max-width: calc(100vw - 280px);
+  height: auto;
+}
+    
+@keyframes VertMarqueeUp
+ {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%); /* only move by half of the list height since we duplicate the images*/
+  }
+}
+
+@keyframes VertMarqueeDown
+ {
+  0% {
+    transform: translateY(-50%);
+  }
+  100% {
+    transform: translateY(0%); /* only move by half of the list height since we duplicate the images*/
+  }
+}

@@ -1,0 +1,242 @@
+<head>
+  <meta name='robots' content='noindex,nofollow'/>
+  <title>00Aparatus</title>
+  <link href="ia/00Aico.png" rel="icon" type="image/x-icon" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #000000;
+    }
+    canvas {
+      display: block;
+    }
+        
+    .header {
+      position: absolute;
+      top: 20px;
+      left: 20px;   
+      color: white;
+    }
+        
+    .password-display {
+      display: inline;
+    }
+    .char {
+      background-color: red;
+      color: red;
+      padding: 0 2px;
+    }
+    .char.correct {
+      background-color: transparent;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+    <p class="header" style="position: absolute; color:white">LOCKTOOL by <span class="password-display"><span class="char" data-index="0">☐</span><span class="char" data-index="1">☐</span><span class="char" data-index="2">☐</span><span class="char" data-index="3">☐</span><span class="char" data-index="4">☐</span></span></p>
+    <canvas id="canvas" style="position: absolute;"></canvas>
+    <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script>
+    <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    const soundFiles = ['sn/sine.wav', 'sn/06_02_A.wav', 'sn/colombo.wav', 'sn/crispycock.wav', "sn/retromelody.wav", "sn/retrobass.wav"];
+    let currentSoundIndex = 0;
+    let audio = new Audio(soundFiles[currentSoundIndex]);
+    audio.loop = true;
+    
+    let audioContext;
+    let source;
+    let gainNode;
+    let audioStarted = false;
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const centerX = canvas.width / 2;
+    const centerY = canvas.height / 2;
+    const maxDistance = Math.sqrt(centerX ** 2 + centerY ** 2);
+    
+    let mouseX = centerX;
+    let mouseY = centerY;
+    let currentPlaybackRate = 1;
+    
+    function startAudio() {
+      if (audioContext) {
+        source.disconnect();
+      }
+      
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        gainNode = audioContext.createGain();
+        gainNode.connect(audioContext.destination);
+      }
+      
+      source = audioContext.createMediaElementSource(audio);
+      source.connect(gainNode);
+      
+      audio.play();
+      audioStarted = true;
+    }
+    
+    function switchSound() {
+      const wasPlaying = !audio.paused;
+      const currentTime = audio.currentTime;
+      const currentRate = audio.playbackRate;
+      
+      if (source) {
+        source.disconnect();
+      }
+      
+      currentSoundIndex = (currentSoundIndex + 1) % soundFiles.length;
+      audio = new Audio(soundFiles[currentSoundIndex]);
+      audio.loop = true;
+      audio.preservesPitch = false;
+      audio.playbackRate = currentRate;
+      
+      if (wasPlaying && audioContext) {
+        source = audioContext.createMediaElementSource(audio);
+        source.connect(gainNode);
+        audio.play();
+      }
+    }
+    
+    function getColorFromDistance(distance) {
+      const ratio = Math.min(distance / maxDistance, 1);
+      const r = Math.round(255 * ratio);
+      const g = 0;
+      const b = 255;
+      return `rgb(${r}, ${g}, ${b})`;
+    }
+    
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      
+      const dx = mouseX - centerX;
+      const dy = mouseY - centerY;
+      const distance = Math.sqrt(dx ** 2 + dy ** 2);
+      const color = getColorFromDistance(distance);
+      
+      // playback rate
+      const ratio = Math.min(distance / maxDistance, 1);
+      //currentPlaybackRate = 4 - (ratio * 3.75); max 4x speed
+      currentPlaybackRate = 2 - (ratio * 1.75);
+      
+      if (audioStarted) {
+        audio.playbackRate = currentPlaybackRate;
+        audio.preservesPitch = false;
+      }
+      
+      // draw line
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(centerX, centerY);
+      ctx.lineTo(mouseX, mouseY);
+      ctx.stroke();
+      
+      // draw dot
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.arc(centerX, centerY, 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    
+    // event listeners to start soune
+    canvas.addEventListener('mousemove', (e) => {
+      if (!audioStarted) {
+        startAudio();
+      }
+      
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      draw();
+    });
+    
+    canvas.addEventListener('click', () => {
+      if (!audioStarted) {
+        startAudio();
+      } else {
+        switchSound();
+      }
+    });
+    
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      draw();
+    });
+
+        window.addEventListener("load", (event) => {
+    new cursoreffects.ghostCursor();
+});
+    
+    draw();
+  </script>
+
+<script>
+        const PASSWORD = "JELQU";
+        let currentPosition = 0;
+        const chars = document.querySelectorAll('.char');
+        
+        const correctSound = new Audio('sn/correct.wav');
+        const wrongSound = new Audio('sn/wrong.wav');
+        const solveSound = new Audio('sn/solve.wav');
+        
+        function resetPassword() {
+            currentPosition = 0;
+            chars.forEach(char => {
+                char.classList.remove('correct');
+                char.textContent = '☐';
+                char.style.backgroundColor = 'red';
+                char.style.color = 'red';
+            });
+        }
+        
+        function playCorrect() {
+            correctSound.currentTime = 0;
+            correctSound.play().catch(e => console.log('Audio play failed:', e));
+        }
+        
+        function playWrong() {
+            wrongSound.currentTime = 0;
+            wrongSound.play().catch(e => console.log('Audio play failed:', e));
+        }
+        
+        function playSolve() {
+            solveSound.currentTime = 0;
+            solveSound.play().catch(e => console.log('Audio play failed:', e));
+        }
+        
+        document.addEventListener('keypress', (e) => {
+            const typedChar = e.key.toUpperCase();
+            const expectedChar = PASSWORD[currentPosition];
+            
+            if (typedChar === expectedChar) {
+                // Correct character
+                playCorrect();
+                chars[currentPosition].textContent = typedChar;
+                chars[currentPosition].classList.add('correct');
+                chars[currentPosition].style.backgroundColor = 'transparent';
+                chars[currentPosition].style.color = 'white';
+                currentPosition++;
+                
+                // Check if password is complete
+                if (currentPosition === PASSWORD.length) {
+                    playSolve();
+                    setTimeout(() => {
+                        window.location.href = 'https://www.google.com/';
+                    }, 1000);
+                }
+            } else {
+                // Wrong character
+                playWrong();
+                resetPassword();
+            }
+        });
+    </script>
+</body>
+</html>
